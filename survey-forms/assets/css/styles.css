@@ -72,20 +72,8 @@ select {
     border: none;
 }
 
-#exp-mot {
+#exp-mot, #exp-yr {
     width: 25%;
-    float: left;
-    margin-bottom: 2px;
-}
-
-#exp-yr {
-    width: 25%;
-    float: left;
-    margin-bottom: 2px;
-}
-
-#city {
-    width: 50%;
     float: left;
     margin-bottom: 2px;
 }
@@ -93,6 +81,12 @@ select {
 #ccv, #zip { 
     width: 46.5%;
     float: right;
+}
+
+#city {
+    width: 50%;
+    float: left;
+    margin-bottom: 2px;
 }
 
 input[type="email"]{
@@ -487,4 +481,53 @@ input[type="submit"]:hover{
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="rgba(45, 33, 166, 0)", endColorstr="#2d21a6", GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
+}
+
+@media only screen and (max-width: 480px){
+    body {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .form-container {
+        margin: 0 2%;
+    }
+
+    input {
+        font-size: 1em;
+        margin: 2px 0;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    input[type="submit"]{
+        height: 50px;
+        width: 100%;
+    }
+
+    #column-left {
+      width: 96.5%;
+      display: block;
+      float: none;
+    }
+
+    #column-right {
+      width: 96.5%;
+      display: block;
+      float: none;
+    }
+
+    #exp-mot, #exp-yr, #city {
+        width: 100.5%;
+        display: block;
+        float: none;
+    }
+    
+    #ccv, #zip { 
+        width: 97%;
+        display: block;
+        float: none;
+    }
 }
