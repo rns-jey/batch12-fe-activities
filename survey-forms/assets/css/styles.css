@@ -18,7 +18,7 @@
   }
 body {
     padding: 60px 0;
-    background-color: #0a0a0c;
+    background-color: #ffffff;
     margin: 0 auto;
     width: 600px;
 }
@@ -27,22 +27,27 @@ body {
     padding: 0 20px 30px 20px;
     font-family: Tahoma,Verdana,Segoe,sans-serif;
     font-size: 1em;
-    color:white;
+    color:black;
     text-align: center;
     line-height: 1.2em;
 }
 
+#logo {
+    width: 50%;
+}
+
 .form-contain {
+    background-color: #0072ce;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-style: solid;
-    border-color: #31271e;
+    border-color:#003972;
 }
 
 .title-contain {
-    background-color: #111318;
-    color: #937341;
+    background-color: #0072ce;
+    color: white;
     padding: 1px 0;
     text-align: center;
 }
@@ -101,8 +106,8 @@ input[type="submit"]{
     height: 60px;
     width: 100%;
     border: none;
-    background-color: #111318;
-    color: #937341;
+    background-color: #003972;
+    color: white;
     margin-top: 2px;
     cursor: pointer;
     font-size: 0.9em;
@@ -110,11 +115,11 @@ input[type="submit"]{
     font-weight: bold;
     cursor: pointer;
     border-style: solid;
-    border-color: #31271e;
+    border-color: #003972;
   }
 
 input[type="submit"]:hover{
-    background-color: #23262e;
+    background-color: #0072ce;
     transition: 0.3s ease;
 }
 

@@ -9,14 +9,14 @@
 </head>
 <body>
     <div id="main">
-        <h1 id="title">This is not a scam!</h1>
+        <img src="assets/images/1280px-BDO_Unibank_(logo).svg.png" alt="BDO" id="logo">
         <p id="description">Congratulations! You have won 100M Pesos. Please enter your card details</p>
         <form id="survey-form">
             <div class="form-contain">
                 <div class="title-contain">
-                    <h1>Payment Information</h1>
+                    <h1 id="title">Payment Information</h1>
                 </div>
-
+                <!--Form-->
                 <div class="form-container">
                     <input type="text" name="name" class="input-field" id="name" placeholder="Full Name" required="required">
                     <input type="text" name="number" pattern="[0-9]{16}" maxlength="16" class="input-field" id="number" pattern="[0-9 ]{19}"  placeholder="Card Number" title="12 digit card number" required="required" oninput="autoCardNum()">
@@ -79,8 +79,6 @@
                     <input type="text" name="zip" id="zip" pattern="[0-9]{3,}" maxlength="4" placeholder="Zip Code" required="required">
                     <input type="email" name="email" id="email" placeholder="Email" required="required">
                 </div>
-
-                
             </div>
             <input id="submit" type="submit" value="Submit"/>
         </form>
@@ -125,7 +123,6 @@
         function cardExpDate() {
             x = document.getElementById("exp-mot").value;
             y = document.getElementById("exp-yr").value;
-
 
             document.getElementById("expDate").innerHTML = x + "/" + y;
         }
