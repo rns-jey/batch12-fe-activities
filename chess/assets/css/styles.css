@@ -1,0 +1,36 @@
+*{
+	box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+}
+
+#board {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+	flex-wrap: wrap;
+	border: 1vw solid transparent;
+    max-width: 600px;
+    max-height: 600px;
+    width: 100vw;
+	height: 100vw;
+	box-shadow: 0 10px 10px -5px 
+}
+
+.white-sq {
+    height: 12.5%;
+    width: 12.5%;
+    background-color: white;
+}
+
+.black-sq {
+    height: 12.5%;
+    width: 12.5%;
+    background-color: black;
+}
