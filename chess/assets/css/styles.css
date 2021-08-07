@@ -15,7 +15,7 @@ body {
     margin: auto;
     display: flex;
 	flex-wrap: wrap;
-	border: 1vw solid transparent;
+	border: 1vw solid #b1964c;
     max-width: 600px;
     max-height: 600px;
     width: 100vw;
@@ -32,5 +32,5 @@ body {
 .black-sq {
     height: 12.5%;
     width: 12.5%;
-    background-color: black;
+    background-color: #111318;
 }
