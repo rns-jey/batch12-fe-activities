@@ -3,6 +3,8 @@
 }
 
 body {
+    margin: 0;
+	padding: 0;
     text-align: center;
     background-color: #0a0a0c;
 }
@@ -21,11 +23,12 @@ h1 {
     display: flex;
 	flex-wrap: wrap;
 	border: 1vw solid #CCCCCC;
-    max-width: 600px;
-    max-height: 600px;
+    max-width: 480px;
+    max-height: 480px;
     width: 100vw;
 	height: 100vw;
-	box-shadow: 0 10px 10px -5px 
+	box-shadow: 0 10px 10px -5px rgba(224, 223, 223, 0.75);
+    font-size: 0;
 }
 
 .white-sq {
