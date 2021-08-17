@@ -1,0 +1,51 @@
+body {
+  background-color: #dddddd;
+}
+
+div.titleWrapper{
+  text-align: center;
+}
+
+div.contentContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+div.component {
+  background-color: white;
+  width: 25%;
+  margin: 10px;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  border-radius: 3%;
+  overflow: hidden;
+}
+
+div.imageWrapper {
+  padding-bottom: 500px;
+}
+
+div.imageWrapper img {
+  width: 100%;
+}
+
+.core-title {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  word-break: break-word;
+}
+
+.coreTitle.xL {
+  font-size: 72px;
+  line-height: 72px;
+  font-weight: 700;
+}
+
+div.contentCaption {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top: gray 1px solid;
+}
