@@ -1,0 +1,237 @@
+@font-face {
+  font-family: "square_sans_serif_7";
+  src: url("../fonts/square_sans_serif_7.woff2") format("woff2"),
+    url("../fonts/square_sans_serif_7.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ubuntu-r";
+  src: url("../fonts/ubuntu-r.woff2") format("woff2"),
+    url("../fonts/ubuntu-r.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  background: url(../images/bg1.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-size: 10px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "ubuntu-r";
+  font-size: 1.6rem;
+  line-height: 1;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+h1 {
+  font-family: "square_sans_serif_7";
+  font-size: 20rem;
+  margin: 0;
+}
+
+input[type="text"] {
+  width: 100%;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: groove;
+}
+
+div#main {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background: rgba(25, 25, 25, 0.5);
+  text-align: center;
+}
+
+div#main-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+#main-wrap h2 {
+  margin: 0 0 5px;
+  font-size: 5rem;
+}
+
+#content-shell input[type="text"] {
+  font-size: 3rem;
+  color: white;
+}
+
+#content-shell {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#name-container {
+  padding-bottom: 50px;
+}
+
+#greetContainer {
+  padding-bottom: 50px;
+}
+
+#focus-container {
+  visibility: hidden;
+}
+
+#focus-container h2 {
+  font-size: 3rem;
+}
+
+#focus-shell {
+  display: none;
+}
+
+#focus-shell h5 {
+  font-size: 2rem;
+  margin: 0 0 10px;
+}
+
+#inspQuote {
+  margin-bottom: 25px;
+}
+
+#inspQuote span,
+#edit-name-shell {
+  font-size: 1.5rem;
+  color: gray;
+  margin: 0 5px;
+}
+
+#edit-name-shell,
+#generate-new,
+#add-my-quote {
+  visibility: hidden;
+}
+
+#generate-new:hover,
+#add-my-quote:hover,
+#edit-name-shell:hover {
+  color: white;
+}
+
+#newQuoteID {
+  font-size: 1.6rem;
+  color: white;
+  border-bottom: hidden;
+  display: none;
+}
+
+#edit-name-btn,
+#generate-new,
+#add-my-quote,
+#todo-exit span,
+span[id^="chk"],
+span[id^="del"] {
+  cursor: pointer;
+}
+
+#btnReset {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+#btnShowToDo {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#todoContainer {
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  border-radius: 5%;
+  display: none;
+}
+
+#todo-title {
+  margin: 0;
+}
+
+#todo-exit {
+  position: relative;
+}
+
+#todo-exit-text {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+#todo-content {
+  padding: 2rem;
+}
+
+#todo-content,
+#todo-content input[type="text"] {
+  text-align: left;
+}
+
+#newToDo {
+  margin: 10px 0;
+}
+
+.todo-shell {
+  border: solid 1px black;
+  padding: 10px;
+  margin: 5px 0;
+  display: flex;
+  max-width: 300px;
+}
+
+.todo-desc,
+.todo-complete {
+  flex: 7;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.todo-icons {
+  flex: 1;
+  display: flex;
+}
+
+span[id^="chk"],
+span[id^="del"] {
+  margin: 0 5px;
+}
+
+.todo-complete {
+  color: lightgrey;
+  text-decoration: line-through;
+}
+
+.is-complete {
+  color: green;
+}

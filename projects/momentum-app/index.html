@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <title>Momentum App</title>
+  </head>
+  <body>
+    <div id="main">
+      <div id="main-wrap">
+        <div id="content-shell">
+          <h1 id="time-clock"></h1>
+          <div id="name-container">
+            <h2>What should I call you?</h2>
+            <input type="text" name="name" id="nameID" autocomplete="off" />
+          </div>
+          <div id="greetContainer">
+            <h2 id="greetLabel"></h2>
+            <div id="edit-name-shell">
+              <p>
+                <span id="edit-name-btn">Edit your name</span>
+              </p>
+            </div>
+          </div>
+          <div id="focus-container">
+            <div id="focusAsk">
+              <h2>What is your main focus today?</h2>
+              <input
+                type="text"
+                name="focusName"
+                id="focusID"
+                autocomplete="off"
+              />
+            </div>
+            <div id="focus-shell">
+              <h5>TODAY</h5>
+              <h2 id="focusLabel"></h2>
+            </div>
+          </div>
+        </div>
+        <div id="inspQuote">
+          <em><p id="quoteLabel"></p></em>
+          <input
+            type="text"
+            name="newQuote"
+            id="newQuoteID"
+            value="Commitment is the ignitor of momentum."
+          />
+          <div id="quotBtns">
+            <p>
+              <span id="generate-new">Generate Quote</span>
+              <span id="add-my-quote">Add my own quote</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button id="btnShowToDo">ToDo</button>
+    <div id="todoContainer">
+      <div id="todo-exit">
+        <span id="todo-exit-text">x</span>
+      </div>
+      <div id="todo-content">
+        <h2 id="todo-title">ToDo</h2>
+        <input
+          type="text"
+          name="newToDo"
+          id="newToDo"
+          placeholder="I want to..."
+        />
+        <div id="todo-list-container"></div>
+      </div>
+    </div>
+    <button id="btnReset">Reset</button>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
