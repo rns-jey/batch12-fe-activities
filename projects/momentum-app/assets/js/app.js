@@ -1,9 +1,4 @@
-
-
-
-
-const quoteText = document.getElementById("quoteLabel");
-
+/* ----CLOCK---- */
 // Function to refresh time clock every second
 function display_c() {
   var refresh = 1000; // Refresh rate in milli seconds
@@ -28,6 +23,7 @@ function display_ct() {
 display_ct();
 
 // Initialize localStorage
+// Input initial keys for quotes and data in localStorage on first time using
 const quotesArr = [
   "Almost any decision is better than no decision — just keep moving.",
   "Commitment is the ignitor of momentum.",
@@ -39,13 +35,14 @@ const constObj = {
   todoList: [],
 };
 
+// check if keys already exists. if not, initialize localStorage key creation
+function iniStorage(keyName,keyVar) {
+  localStorage.getItem(keyName) === null ? localStorage.setItem(keyName, JSON.stringify(keyVar)) : "";
+}
+
 if (typeof Storage !== "undefined") {
-  if (localStorage.getItem("quoteData") === null) {
-    localStorage.setItem("quoteData", JSON.stringify(quotesArr));
-  }
-  if (localStorage.getItem("data") === null) {
-    localStorage.setItem("data", JSON.stringify(constObj));
-  }
+  iniStorage("quoteData", quotesArr);
+  iniStorage("data", constObj);
 }
 
 // Variables that will hold your new data from localStorage
@@ -53,12 +50,16 @@ let newQuoteArr = JSON.parse(localStorage.getItem("quoteData"));
 let dataObj = JSON.parse(localStorage.getItem("data"));
 let toDoItems = dataObj["todoList"];
 
+/* ----INSPIRATIONAL QUOTES---- */
 //Display Inspirational Quote
+const quoteText = document.getElementById("quoteLabel");
 let curRandNum = 0;
 let newRandNum = 0;
 
 const newQuoteText = document.getElementById("newQuoteID");
 
+// function that will get a random number from the quote array
+// do not get the index of the current displayed quote
 function randNum(curNum) {
   while (newRandNum === curNum) {
     newRandNum = Math.floor(Math.random() * newQuoteArr.length);
@@ -105,10 +106,12 @@ addMyOwnQuote.addEventListener("click", function (event) {
   newQuoteText.focus();
 });
 
+// new quote input box key up listener
 newQuoteText.addEventListener("keyup", function (event) {
   let inputVal = newQuoteText.value.trim();
   
-  // Number 13 is the "Enter" key on the keyboard 
+  // Number 13 is the "Enter" key on the keyboard
+  // Number 27 is the "Esc" key on the keyboard 
   if (event.keyCode === 13) {
     if (inputVal !== "") {
       newQuoteArr.push(inputVal);
