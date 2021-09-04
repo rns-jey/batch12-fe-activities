@@ -56,3 +56,12 @@ body {
 .c2 {
   grid-area: c2;
 }
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
