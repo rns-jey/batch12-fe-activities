@@ -1,8 +1,11 @@
 let board = [
-  ["X","O","X"],
-  ["X","O","O"],
-  ["O","O","X"]
+  ["","",""],
+  ["","",""],
+  ["","",""]
 ]
+
+let players = ["X","Y"];
+let currPlayer = players[0];
 
 const rowLet = ['a','b','c'];
 let myBoard = document.getElementById("ttt-board");
@@ -10,6 +13,8 @@ let myBoard = document.getElementById("ttt-board");
 function drawBattle() {
   let h = myBoard.clientHeight / 3;
   let w = myBoard.clientWidth / 3;
+
+  myBoard.innerHTML = "";
 
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
@@ -22,16 +27,24 @@ function drawBattle() {
       tile.classList.add(rowLet[row] + col)
 
       if (spot === "X") {
-        theMove.innerHTML = "X";
+        tile.innerHTML = "X";
       } else if (spot === "O") {
-        theMove.innerHTML = "O";
+        tile.innerHTML = "O";
       }
 
-      tile.appendChild(theMove)
+      myBoard.appendChild(tile);
 
-      thisBoard.appendChild(tile);
+      tile.onclick = function () {
+        saveMove(row,col)
+      }
     }
   }
 }
 
 drawBattle()
+
+function saveMove(row,col) {
+  board[row][col] = currPlayer;
+  drawBattle();
+}
+
