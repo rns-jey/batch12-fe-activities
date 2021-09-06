@@ -24,7 +24,7 @@ let board = [
 
 let available = []
 
-let players = ["X","O"];
+let players = ["O","X"];
 let currPlayer = players[0];
 
 const rowLet = ['a','b','c'];
