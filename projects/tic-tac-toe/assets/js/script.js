@@ -96,11 +96,15 @@ function nextPlayer() {
 function saveMove(row,col) {
   let result = theWinner();
   drawBattle();
-
+  
   if (result !== null) {
     alert(`${result} wins!`)
   } else {
-    nextPlayer()
+    if (available.length > 0) {
+      nextPlayer()
+    } else {
+      alert(`It's a tie!`)
+    }
   }
 }
 
