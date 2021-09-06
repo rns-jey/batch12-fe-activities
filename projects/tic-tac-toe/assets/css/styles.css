@@ -10,6 +10,26 @@ body {
   align-items: center;
 }
 
+#main {
+  display: flex;
+  flex-direction: column;
+}
+
+#players {
+  display: flex;
+  margin: 10px;
+}
+
+#player1,
+#player2 {
+  text-align: center;
+  width: 50%;
+}
+
+.current-player h1 {
+  text-decoration: underline;
+}
+
 #ttt-board {
   display: grid;
   grid-template-columns: 150px 150px 150px;
