@@ -5,6 +5,8 @@ body {
 }
 
 body {
+  background-color: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,17 +19,67 @@ body {
 
 #players {
   display: flex;
+  justify-content: space-around;
   margin: 10px;
 }
 
 #player1,
 #player2 {
-  text-align: center;
-  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  margin: 10px;
 }
 
-.current-player h1 {
-  text-decoration: underline;
+.current-player.blue {
+  background-image: radial-gradient(blue, black);
+  border-radius: 50%;
+  transform: scale(1);
+  animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+  }
+}
+
+.current-player.red {
+  background-image: radial-gradient(red, black);
+  border-radius: 50%;
+  transform: scale(1);
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
 }
 
 #ttt-board {
@@ -39,6 +91,55 @@ body {
     "a0 a1 a2"
     "b0 b1 b2"
     "c0 c1 c2";
+}
+
+svg {
+  height: 450px;
+  width: 450px;
+  position: absolute;
+  stroke-width: 15;
+  stroke: brown;
+  visibility: hidden;
+}
+
+svg.blue {
+  stroke: blue;
+}
+
+svg.red {
+  stroke: red;
+}
+
+.horizontal.top {
+  top: 19.5rem;
+}
+
+.horizontal.mid {
+  top: 28.8rem;
+}
+
+.horizontal.bot {
+  top: 38.2rem;
+}
+
+.vertical {
+  top: 15rem;
+}
+
+.vertical.left {
+  left: 37.8rem;
+}
+
+.vertical.mid {
+  left: 47.17rem;
+}
+
+.vertical.right {
+  left: 56.6rem;
+}
+
+.diagonal {
+  top: 15rem;
 }
 
 .a0 {
@@ -83,7 +184,8 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid white;
+  font-size: 3rem;
 }
 
 .the-move {
