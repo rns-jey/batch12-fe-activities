@@ -4,7 +4,7 @@ let board = [
   ["","",""]
 ]
 
-let players = ["X","Y"];
+let players = ["X","O"];
 let currPlayer = players[0];
 
 const rowLet = ['a','b','c'];
@@ -51,8 +51,6 @@ function nextPlayer() {
   player1.className = currPlayer === players[0] ? "current-player" : "";
   player2.className = currPlayer === players[1] ? "current-player" : "";
 }
-
-
 
 function saveMove(row,col) {
   board[row][col] = currPlayer;
