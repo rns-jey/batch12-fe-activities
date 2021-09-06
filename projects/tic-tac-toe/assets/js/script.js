@@ -23,7 +23,7 @@ let board = [
 ]
 
 let available = []
-
+let isGameover = false;
 let players = ["O","X"];
 let currPlayer = players[0];
 
@@ -58,9 +58,11 @@ function drawBattle() {
       myBoard.appendChild(tile);
 
       tile.onclick = function () {
-        if (available.includes(availableSpot)) {
-          board[row][col] = currPlayer;
-          saveMove()
+        if (isGameover !== true) {
+          if (available.includes(availableSpot)) {
+            board[row][col] = currPlayer;
+            saveMove()
+          }
         }
       }
     }
@@ -117,11 +119,13 @@ function saveMove(row,col) {
   
   if (result !== null) {
     alert(`${result} wins!`)
+    isGameover = true;
   } else {
     if (available.length > 0) {
       nextPlayer()
     } else {
       alert(`It's a tie!`)
+      isGameover =true;
     }
   }
 }
