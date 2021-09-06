@@ -24,8 +24,7 @@ function drawBattle() {
       const tile = document.createElement("div");
 
       let spot = board[row][col];
-      let availableSpot = `[${row}][${col}]`
-
+      
       tile.className = "tile";
       tile.classList.add(rowLet[row] + col)
 
@@ -34,6 +33,8 @@ function drawBattle() {
       } else if (spot === "O") {
         tile.innerHTML = "O";
       } else {
+        let availableSpot = `[${row}][${col}]`
+
         available.push(availableSpot)
       }
 
