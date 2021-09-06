@@ -47,10 +47,12 @@ function nextPlayer() {
   const player1 = document.getElementById("player1");
   const player2 = document.getElementById("player2");
 
-  currPlayer = currPlayer === "X" ? "O" : "X";
-  player1.className = currPlayer === "X" ? "current-player" : "";
-  player2.className = currPlayer === "O" ? "current-player" : "";
+  currPlayer = currPlayer === players[0] ? players[1] : players[0];
+  player1.className = currPlayer === players[0] ? "current-player" : "";
+  player2.className = currPlayer === players[1] ? "current-player" : "";
 }
+
+
 
 function saveMove(row,col) {
   board[row][col] = currPlayer;
