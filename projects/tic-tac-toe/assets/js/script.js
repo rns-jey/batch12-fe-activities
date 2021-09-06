@@ -115,7 +115,23 @@ function theWinner() {
     diagonalMark[1].style.visibility = "visible";
   }
 
-  return winner;
+  return (winner === "O" ? "You win!" : winner === "X" ? "You lose!" : null);
+}
+
+async function aiTurn() {
+  let aiMove = new Promise((resolve, reject) => {
+    setTimeout(() => {
+
+      let arrIndexes = available[Math.floor(Math.random() * available.length)];
+
+      resolve(`board${arrIndexes} = "${currPlayer}"`)
+    }, 250)
+  });
+  
+  let result = await aiMove;
+
+  eval(result);
+  saveMove();
 }
 
 function nextPlayer() {
@@ -125,6 +141,10 @@ function nextPlayer() {
   currPlayer = currPlayer === players[0] ? players[1] : players[0];
   player1.className = currPlayer === players[0] ? "current-player blue" : "";
   player2.className = currPlayer === players[1] ? "current-player red" : "";
+
+  if (currPlayer === players[1]) {
+    aiTurn();
+  }
 }
 
 function saveMove(row,col) {
@@ -132,7 +152,7 @@ function saveMove(row,col) {
   drawBattle();
   
   if (result !== null) {
-    alert(`${result} wins!`)
+    alert(result)
     isGameover = true;
   } else {
     if (available.length > 0) {
