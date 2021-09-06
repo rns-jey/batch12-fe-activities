@@ -1,3 +1,21 @@
+/*Create a game of tic tac toe.
+  -The design and representation and responsiveness of the tic tac toe board in the DOM is up to you.
+  -The rule of whose turn it is (X or O) must be observed. You can choose whether X or O will play first.
+  -The "state" of the board should strictly come from a two-dimensional array (In JS, that's array within an array).
+  -You may use array built-in methods.
+  
+  When a player wins, you must show the history of the game.
+  To do that, every move should be "saved".
+  Implement (2) buttons, "Previous" and "Next", that will show up when a game is done / finished.
+  When clicking "Previous" or "Next, the board should show the current move at that moment / turn.
+  If there's no "next move", the next button must be disabled.
+  If there's no "previous move", the previous button must be disabled.
+  Implement a reset button, that:
+  1. Restarts the game
+  2. Hides the "Previous" and "Next" buttons
+  3. Clears move history﻿
+*/
+
 let board = [
   ["","",""],
   ["","",""],
