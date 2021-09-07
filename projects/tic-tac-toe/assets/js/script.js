@@ -125,7 +125,7 @@ async function aiTurn() {
       let arrIndexes = available[Math.floor(Math.random() * available.length)];
 
       resolve(`board${arrIndexes} = "${currPlayer}"`)
-    }, 250)
+    }, 1000)
   });
   
   let result = await aiMove;

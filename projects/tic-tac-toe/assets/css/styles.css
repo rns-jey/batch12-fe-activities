@@ -32,53 +32,26 @@ body {
   height: 100px;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
   margin: 10px;
+  font-size: 4rem;
 }
 
-.current-player.blue {
-  background-image: radial-gradient(blue, black);
-  border-radius: 50%;
-  transform: scale(1);
-  animation: pulse-blue 2s infinite;
-}
-
-@keyframes pulse-blue {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
-  }
-
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
-  }
-
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
-  }
-}
-
+.current-player.blue,
 .current-player.red {
-  background-image: radial-gradient(red, black);
-  border-radius: 50%;
   transform: scale(1);
-  animation: pulse-red 2s infinite;
+  animation: pulse-beat 2s infinite;
 }
 
-@keyframes pulse-red {
+@keyframes pulse-beat {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+    transform: scale(1.2);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
   }
 
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+    transform: scale(1.2);
   }
 }
 
@@ -185,7 +158,8 @@ svg.red {
   width: 100%;
   height: 100%;
   border: 1px solid white;
-  font-size: 3rem;
+  font-size: 10rem;
+  cursor: pointer;
 }
 
 .the-move {
