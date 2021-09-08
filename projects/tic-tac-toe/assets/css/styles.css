@@ -35,8 +35,7 @@ body {
   margin: 0;
 }
 
-.current-player.blue,
-.current-player.red {
+.current-player {
   transform: scale(1);
   animation: pulse-beat 2s infinite;
 }
@@ -52,6 +51,44 @@ body {
 
   100% {
     transform: scale(1.2);
+  }
+}
+
+.winning-trio.blue {
+  background-color: blue;
+  animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+  0% {
+    background-color: black;
+  }
+
+  70% {
+    background-color: blue;
+  }
+
+  100% {
+    background-color: black;
+  }
+}
+
+.winning-trio.red {
+  background-color: red;
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    background-color: black;
+  }
+
+  70% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: black;
   }
 }
 
