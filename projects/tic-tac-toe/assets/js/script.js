@@ -150,7 +150,7 @@ function disableBtn() {
 
   if (historyIndex === (history.length - 1)) {
     btnNext.disabled = true;
-    displayWinner()
+    displayWinner(currPlayer === players[0] ? "blue" : "red")
   } else if (historyIndex < (history.length - 1)) {
     btnNext.disabled = false;
   }
