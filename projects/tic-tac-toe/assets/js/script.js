@@ -198,6 +198,7 @@ function gameOver() {
   isGameover = true;
   player1.className = "";
   player2.className = "";
+  historyIndex = history.length - 1;
 
   historyBtns.style.visibility = "visible"
 }
@@ -210,14 +211,13 @@ function saveMove(row,col) {
   if (result !== null) {
     alert(result)
     gameOver()
-    historyIndex = history.length - 1;
+    
   } else {
     if (available.length > 0) {
       nextPlayer()
     } else {
       alert(`It's a tie!`)
       gameOver()
-      historyIndex = history.length - 2;
     }
   }
 }
