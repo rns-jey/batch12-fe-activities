@@ -179,10 +179,10 @@ async function aiTurn() {
   saveMove();
 }
 
-function nextPlayer() {
-  const player1 = document.getElementById("player1");
-  const player2 = document.getElementById("player2");
+const player1 = document.getElementById("player1");
+const player2 = document.getElementById("player2");
 
+function nextPlayer() {
   currPlayer = currPlayer === players[0] ? players[1] : players[0];
   player1.className = currPlayer === players[0] ? "current-player blue" : "";
   player2.className = currPlayer === players[1] ? "current-player red" : "";
@@ -192,6 +192,16 @@ function nextPlayer() {
   }
 }
 
+function gameOver() {
+  const historyBtns = document.querySelector(".history-buttons");
+
+  isGameover = true;
+  player1.className = "";
+  player2.className = "";
+
+  historyBtns.style.visibility = "visible"
+}
+
 function saveMove(row,col) {
   let result = theWinner();
   drawBattle(board);
@@ -199,14 +209,14 @@ function saveMove(row,col) {
   
   if (result !== null) {
     alert(result)
-    isGameover = true;
+    gameOver()
     historyIndex = history.length - 1;
   } else {
     if (available.length > 0) {
       nextPlayer()
     } else {
       alert(`It's a tie!`)
-      isGameover =true;
+      gameOver()
       historyIndex = history.length - 2;
     }
   }

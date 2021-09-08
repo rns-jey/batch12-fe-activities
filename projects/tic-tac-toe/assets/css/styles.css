@@ -175,3 +175,7 @@ svg.red {
 div.history-buttons span {
   cursor: pointer;
 }
+
+div.history-buttons {
+  visibility: hidden;
+}
