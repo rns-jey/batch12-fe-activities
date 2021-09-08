@@ -86,9 +86,6 @@ function checkWinner(a,b,c) {
 const divMain = document.getElementById("main");
 
 function theWinner() {
-  const horizonMark = document.querySelectorAll(".horizontal");
-  const verticalMark = document.querySelectorAll(".vertical");
-  const diagonalMark = document.querySelectorAll(".diagonal");
 
   let winner = null;
 
@@ -96,8 +93,6 @@ function theWinner() {
   for (let row = 0; row < 3; row++) {
     if (checkWinner(board[row][0],board[row][1],board[row][2])) {
       winner = board[row][0];
-      horizonMark[row].classList.add(currPlayer === players[0] ? "blue" : "red")
-      horizonMark[row].style.visibility = "visible";
     }
   }
 
@@ -105,22 +100,16 @@ function theWinner() {
   for (let col = 0; col < 3; col++) {
     if (checkWinner(board[0][col],board[1][col],board[2][col])) {
       winner = board[0][col];
-      verticalMark[col].classList.add(currPlayer === players[0] ? "blue" : "red")
-      verticalMark[col].style.visibility = "visible";
     } 
   }
 
   //Diagonal
   if (checkWinner(board[0][0],board[1][1],board[2][2])) {
     winner = board[0][0];
-    diagonalMark[0].classList.add(currPlayer === players[0] ? "blue" : "red")
-    diagonalMark[0].style.visibility = "visible";
   }
 
   if (checkWinner(board[0][2],board[1][1],board[2][0])) {
     winner = board[0][2];
-    diagonalMark[1].classList.add(currPlayer === players[0] ? "blue" : "red")
-    diagonalMark[1].style.visibility = "visible";
   }
 
   return (winner === "O" ? "You win!" : winner === "X" ? "You lose!" : null);
@@ -146,15 +135,32 @@ const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 let historyIndex = 0;
 
-btnPrev.addEventListener("click", function (event) {
-    drawBattle(history[historyIndex]);
-    historyIndex -= 1;
+function disableBtn() {
+  if (historyIndex === 0) {
+    btnPrev.disabled = true;
+  } else if (historyIndex > 0) {
+    btnPrev.disabled = false;
+  }
 
-  console.log(history[historyIndex])
+  if (historyIndex === (history.length - 1)) {
+    btnNext.disabled = true;
+  } else if (historyIndex < (history.length - 1)) {
+    btnNext.disabled = false;
+  }
+}
+
+btnPrev.addEventListener("click", function (event) {
+  historyIndex -= 1;
+  drawBattle(history[historyIndex]);
+
+  disableBtn()
 });
 
 btnNext.addEventListener("click", function (event) {
-  
+  historyIndex += 1;
+  drawBattle(history[historyIndex]);
+
+  disableBtn()
 });
 
 async function aiTurn() {
