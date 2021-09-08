@@ -138,6 +138,7 @@ function saveHistory() {
 
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
+const btnReset = document.getElementById("btn-reset");
 let historyIndex = 0;
 
 function disableBtn() {
@@ -167,6 +168,24 @@ btnNext.addEventListener("click", function (event) {
   drawBattle(history[historyIndex]);
 
   disableBtn()
+});
+
+btnReset.addEventListener("click", function (event) {
+  board = [
+    ["","",""],
+    ["","",""],
+    ["","",""]
+  ]
+
+  history = [];
+  isGameover = false;
+  currPlayer = players[0];
+  winningTrio = [];
+
+  playerShell.style.display = "block"
+  gameOverShell.style.display = "none"
+
+  drawBattle(board);
 });
 
 async function aiTurn() {
