@@ -171,3 +171,7 @@ svg.red {
 .the-move {
   width: 100%;
 }
+
+div.history-buttons span {
+  cursor: pointer;
+}

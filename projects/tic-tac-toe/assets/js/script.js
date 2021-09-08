@@ -22,6 +22,14 @@ let board = [
   ["","",""]
 ]
 
+let history = [];
+
+class clsBoard {
+  constructor(arr2D) {
+    this.arr2D = arr2D;
+  }
+}
+
 let available = []
 let isGameover = false;
 let players = ["O","X"];
@@ -30,7 +38,7 @@ let currPlayer = players[0];
 const rowLet = ['a','b','c'];
 let myBoard = document.getElementById("ttt-board");
 
-function drawBattle() {
+function drawBattle(currBoard) {
   let h = myBoard.clientHeight / 3;
   let w = myBoard.clientWidth / 3;
 
@@ -41,7 +49,7 @@ function drawBattle() {
     for (let col = 0; col < 3; col++) {
       const tile = document.createElement("div");
 
-      let spot = board[row][col];
+      let spot = currBoard[row][col];
       let availableSpot = `[${row}][${col}]`
       
       tile.className = "tile";
@@ -57,10 +65,10 @@ function drawBattle() {
 
       myBoard.appendChild(tile);
 
-      tile.onclick = function () {
-        if (isGameover !== true) {
+      if (isGameover !== true) {
+        tile.onclick = function () {
           if (available.includes(availableSpot)) {
-            board[row][col] = currPlayer;
+            currBoard[row][col] = currPlayer;
             saveMove()
           }
         }
@@ -69,7 +77,7 @@ function drawBattle() {
   }
 }
 
-drawBattle()
+drawBattle(board)
 
 function checkWinner(a,b,c) {
   return (a === b && b === c && a !== "")
@@ -118,6 +126,37 @@ function theWinner() {
   return (winner === "O" ? "You win!" : winner === "X" ? "You lose!" : null);
 }
 
+function saveHistory() {
+  let historyBoard = [
+    ["","",""],
+    ["","",""],
+    ["","",""]
+  ]
+
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
+      historyBoard[row][col] = board[row][col]
+    }
+  }
+
+  history.push(historyBoard)
+}
+
+const btnPrev = document.getElementById("btn-prev");
+const btnNext = document.getElementById("btn-next");
+let historyIndex = 0;
+
+btnPrev.addEventListener("click", function (event) {
+    drawBattle(history[historyIndex]);
+    historyIndex -= 1;
+
+  console.log(history[historyIndex])
+});
+
+btnNext.addEventListener("click", function (event) {
+  
+});
+
 async function aiTurn() {
   let aiMove = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -149,17 +188,20 @@ function nextPlayer() {
 
 function saveMove(row,col) {
   let result = theWinner();
-  drawBattle();
+  drawBattle(board);
+  saveHistory();
   
   if (result !== null) {
     alert(result)
     isGameover = true;
+    historyIndex = history.length - 1;
   } else {
     if (available.length > 0) {
       nextPlayer()
     } else {
       alert(`It's a tie!`)
       isGameover =true;
+      historyIndex = history.length - 2;
     }
   }
 }
