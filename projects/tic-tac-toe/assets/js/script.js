@@ -50,20 +50,23 @@ function drawBattle(currBoard) {
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
       const tile = document.createElement("div");
+      const theMove = document.createElement("span");
 
       let spot = currBoard[row][col];
       let availableSpot = `[${row}][${col}]`
       
-      tile.className = "tile";
-      tile.classList.add(rowLet[row] + col)
 
       if (spot === "X") {
-        tile.innerHTML = "X";
+        theMove.innerHTML = "X";
       } else if (spot === "O") {
-        tile.innerHTML = "O";
+        theMove.innerHTML = "O";
       } else {
         available.push(availableSpot)
       }
+
+      tile.appendChild(theMove)
+      tile.className = "tile";
+      tile.classList.add(rowLet[row] + col)
 
       myBoard.appendChild(tile);
 
@@ -143,6 +146,7 @@ const btnReset = document.getElementById("btn-reset");
 const btnVersus = document.getElementById("versus");
 const player1Elem = document.getElementById("player1");
 const player2Elem = document.getElementById("player2");
+
 let historyIndex = 0;
 
 function disableBtn() {
@@ -154,7 +158,7 @@ function disableBtn() {
 
   if (historyIndex === (history.length - 1)) {
     btnNext.disabled = true;
-    displayWinner(currPlayer === players[0] ? "blue" : "red")
+    displayWinner()
   } else if (historyIndex < (history.length - 1)) {
     btnNext.disabled = false;
   }
@@ -272,12 +276,11 @@ const playerShell = document.getElementById("players");
 const gameOverShell = document.getElementById("game-over");
 const winnerName = document.getElementById("the-winner");
 
-function displayWinner(cls) {
+function displayWinner() {
   for (let i = 0; i < winningTrio.length; i++) {
     const tile = document.querySelector(`.${winningTrio[i]}`);
     
     tile.classList.add("winning-trio");
-    tile.classList.add(cls)
   }
 }
 
@@ -298,7 +301,7 @@ function saveMove(row,col) {
   
   if (result !== null) {
     winnerName.innerHTML = currPlayer === players[0] ? `${p1Name.innerHTML} Wins!` : `${p2Name.innerHTML} Wins!`;
-    displayWinner(currPlayer === players[0] ? "blue" : "red")
+    displayWinner()
     gameOver()
   } else {
     if (available.length > 0) {

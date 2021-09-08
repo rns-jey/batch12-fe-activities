@@ -4,8 +4,17 @@ body {
   margin: 0;
 }
 
+html {
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-size: 10px;
+}
+
 body {
-  background-color: black;
+  background: rgba(25, 25, 25, 0.5);
   color: white;
   display: flex;
   justify-content: center;
@@ -75,41 +84,22 @@ body {
   }
 }
 
-.winning-trio.blue {
-  background-color: blue;
-  animation: pulse-blue 2s infinite;
+.winning-trio span {
+  transform: scale(1);
+  animation: pulse-move 2s infinite;
 }
 
-@keyframes pulse-blue {
+@keyframes pulse-move {
   0% {
-    background-color: black;
+    transform: scale(1.2);
   }
 
   70% {
-    background-color: blue;
+    transform: scale(1);
   }
 
   100% {
-    background-color: black;
-  }
-}
-
-.winning-trio.red {
-  background-color: red;
-  animation: pulse-red 2s infinite;
-}
-
-@keyframes pulse-red {
-  0% {
-    background-color: black;
-  }
-
-  70% {
-    background-color: red;
-  }
-
-  100% {
-    background-color: black;
+    transform: scale(1.2);
   }
 }
 
@@ -117,27 +107,36 @@ body {
   display: grid;
   grid-template-columns: 150px 150px 150px;
   grid-template-rows: 150px 150px 150px;
+  gap: 0 0;
   grid-auto-flow: row;
   grid-template-areas:
     "a0 a1 a2"
     "b0 b1 b2"
     "c0 c1 c2";
+  border: 5px solid white;
+  border-radius: 5%;
 }
 
 .a0 {
   grid-area: a0;
+  border-right: solid 1px white;
+  border-bottom: solid 1px white;
 }
 
 .a1 {
   grid-area: a1;
+  border-bottom: solid 1px white;
 }
 
 .a2 {
   grid-area: a2;
+  border-left: solid 1px white;
+  border-bottom: solid 1px white;
 }
 
 .b0 {
   grid-area: b0;
+  border-right: solid 1px white;
 }
 
 .b1 {
@@ -146,29 +145,35 @@ body {
 
 .b2 {
   grid-area: b2;
+  border-left: solid 1px white;
 }
 
 .c0 {
   grid-area: c0;
+  border-top: solid 1px white;
+  border-right: solid 1px white;
 }
 
 .c1 {
   grid-area: c1;
+  border-top: solid 1px white;
 }
 
 .c2 {
   grid-area: c2;
+  border-top: solid 1px white;
+  border-left: solid 1px white;
 }
 
 .tile {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  border: 1px solid white;
+  width: 150px;
+  height: 150px;
   font-size: 10rem;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .the-move {
@@ -208,4 +213,11 @@ div#game-over {
 
 #the-winner {
   font-size: 3rem;
+}
+
+#aydi {
+  width: 250px;
+  height: 100px;
+  color: red;
+  background-color: pink;
 }
