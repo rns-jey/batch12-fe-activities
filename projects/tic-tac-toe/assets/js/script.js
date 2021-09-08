@@ -140,6 +140,18 @@ function saveHistory() {
   history.push(historyBoard)
 }
 
+const topCurtain = document.getElementById("top-curtain");
+const botCurtain = document.getElementById("bot-curtain");
+
+function entrance() {
+  setTimeout(() => {
+    topCurtain.classList.add("open-top")
+    botCurtain.classList.add("open-bot")
+  }, 3000)
+}
+
+entrance()
+
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 const btnReset = document.getElementById("btn-reset");
