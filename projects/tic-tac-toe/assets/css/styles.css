@@ -48,7 +48,7 @@ body {
   height: 100px;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
   margin: 10px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
@@ -215,9 +215,14 @@ div#game-over {
   font-size: 3rem;
 }
 
-#aydi {
-  width: 250px;
-  height: 100px;
-  color: red;
-  background-color: pink;
+@media screen and (max-width: 425px) {
+  #ttt-board {
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+  }
+
+  .tile {
+    width: 100px;
+    height: 100px;
+  }
 }
