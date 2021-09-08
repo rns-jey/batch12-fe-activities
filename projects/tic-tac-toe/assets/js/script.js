@@ -32,8 +32,9 @@ class clsBoard {
 
 let available = []
 let isGameover = false;
-let players = ["O","X"];
+let players = ["X","O"];
 let currPlayer = players[0];
+let versusSet = "1 Player"
 let winningTrio = [];
 
 const rowLet = ['a','b','c'];
@@ -139,6 +140,9 @@ function saveHistory() {
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 const btnReset = document.getElementById("btn-reset");
+const btnVersus = document.getElementById("versus");
+const player1Elem = document.getElementById("player1");
+const player2Elem = document.getElementById("player2");
 let historyIndex = 0;
 
 function disableBtn() {
@@ -170,7 +174,44 @@ btnNext.addEventListener("click", function (event) {
   disableBtn()
 });
 
-btnReset.addEventListener("click", function (event) {
+function changeCharacters() {
+  const p1Char = document.getElementById("p1-char");
+  const p2Char = document.getElementById("p2-char");
+
+  players = players[0] === "X" ? ["O","X"] : ["X","O"];
+  p1Char.innerHTML = p1Char.innerHTML === "X" ? "O" : "X";
+  p2Char.innerHTML = p2Char.innerHTML === "X" ? "O" : "X";
+  resetGame()
+}
+
+player1Elem.addEventListener("click", function (event) {
+  changeCharacters()
+});
+
+player2Elem.addEventListener("click", function (event) {
+  changeCharacters()
+});
+
+btnVersus.addEventListener("click", function (event) {
+  const vsAIDisplay = document.getElementById("vs-ai");
+  const vs2pDisplay = document.getElementById("vs-2p");
+
+  if (versusSet === "1 Player") {
+    vsAIDisplay.style.display = "none"
+    vs2pDisplay.style.display = "block"
+    p2Name.innerHTML = "Player2"
+    versusSet = "2 Player"
+  } else {
+    vsAIDisplay.style.display = "block"
+    vs2pDisplay.style.display = "none"
+    p2Name.innerHTML = "Computer"
+    versusSet = "1 Player"
+  }
+
+  resetGame()
+});
+
+function resetGame() {
   board = [
     ["","",""],
     ["","",""],
@@ -181,11 +222,17 @@ btnReset.addEventListener("click", function (event) {
   isGameover = false;
   currPlayer = players[0];
   winningTrio = [];
+  player1.className = "current-player";
+  player2.className = "";
 
   playerShell.style.display = "block"
   gameOverShell.style.display = "none"
 
   drawBattle(board);
+}
+
+btnReset.addEventListener("click", function (event) {
+  resetGame()
 });
 
 async function aiTurn() {
@@ -214,8 +261,10 @@ function nextPlayer() {
   player1.className = currPlayer === players[0] ? "current-player" : "";
   player2.className = currPlayer === players[1] ? "current-player" : "";
 
-  if (currPlayer === players[1]) {
-    aiTurn();
+  if (versusSet === "1 Player") {
+    if (currPlayer === players[1]) {
+      aiTurn();
+    }
   }
 }
 
