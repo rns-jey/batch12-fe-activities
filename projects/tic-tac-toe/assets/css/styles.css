@@ -334,6 +334,7 @@ body {
   .tile {
     width: 100px;
     height: 100px;
+    font-size: 7rem;
   }
 
   #curtain {
@@ -348,5 +349,9 @@ body {
   #bot-title {
     position: absolute;
     top: -32px;
+  }
+
+  .button {
+    font-size: 1.4rem;
   }
 }
