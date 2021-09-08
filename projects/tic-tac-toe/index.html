@@ -10,23 +10,29 @@
   <body>
     <div id="main">
       <div id="ttt-board"></div>
-      <div id="players">
-        <div class="current-player blue" id="player1">
-          <h2>Player1</h2>
-          <h1>O</h1>
+      <div class="containers">
+        <div id="players">
+          <div id="players-shell">
+            <div class="current-player blue" id="player1">
+              <h2>Player1</h2>
+              <h1>O</h1>
+            </div>
+            <div class="" id="player2">
+              <h2>Computer</h2>
+              <h1>X</h1>
+            </div>
+          </div>
         </div>
-        <div class="" id="player2">
-          <h2>Computer</h2>
-          <h1>X</h1>
+        <div id="game-over">
+          <h1 id="the-winner">Player1 Wins!</h1>
+          <div class="history-buttons">
+            <button id="btn-prev">|<<</button>
+            <button id="btn-reset">Reset</button>
+            <button id="btn-next" disabled>>>|</button>
+          </div>
         </div>
-      </div>
-      <div class="history-buttons">
-        <button id="btn-prev">|<<</button>
-        <button id="btn-reset">Reset</button>
-        <button id="btn-next" disabled>>>|</button>
       </div>
     </div>
-
     <script src="assets/js/script.js"></script>
   </body>
 </html>

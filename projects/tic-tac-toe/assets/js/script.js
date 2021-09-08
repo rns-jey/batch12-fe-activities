@@ -192,15 +192,17 @@ function nextPlayer() {
   }
 }
 
-function gameOver() {
-  const historyBtns = document.querySelector(".history-buttons");
+const playerShell = document.getElementById("players");
+const gameOverShell = document.getElementById("game-over");
 
+function gameOver() {
   isGameover = true;
   player1.className = "";
   player2.className = "";
   historyIndex = history.length - 1;
 
-  historyBtns.style.visibility = "visible"
+  playerShell.style.display = "none"
+  gameOverShell.style.display = "block"
 }
 
 function saveMove(row,col) {
