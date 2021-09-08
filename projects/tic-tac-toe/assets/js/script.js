@@ -16,34 +16,37 @@
   3. Clears move history﻿
 */
 
+const curtain = document.getElementById("curtain");
+const topCurtain = document.getElementById("top-curtain");
+const botCurtain = document.getElementById("bot-curtain");
+
 let board = [
   ["","",""],
   ["","",""],
   ["","",""]
-]
+];
 
-let history = [];
+function entrance() {
+  setTimeout(() => {
+    topCurtain.classList.add("open-top");
+    botCurtain.classList.add("open-bot");
 
-class clsBoard {
-  constructor(arr2D) {
-    this.arr2D = arr2D;
-  }
+    setTimeout(() => {
+      curtain.style.display = "none"
+    }, 1000);
+  }, 1000)  ;
 }
 
-let available = []
-let isGameover = false;
+entrance();
+
+let myBoard = document.getElementById("ttt-board");
+let available = [];
 let players = ["X","O"];
 let currPlayer = players[0];
-let versusSet = "1 Player"
-let winningTrio = [];
-
 const rowLet = ['a','b','c'];
-let myBoard = document.getElementById("ttt-board");
+let isGameover = false;
 
 function drawBattle(currBoard) {
-  let h = myBoard.clientHeight / 3;
-  let w = myBoard.clientWidth / 3;
-
   myBoard.innerHTML = "";
   available = [];
 
@@ -53,20 +56,19 @@ function drawBattle(currBoard) {
       const theMove = document.createElement("span");
 
       let spot = currBoard[row][col];
-      let availableSpot = `[${row}][${col}]`
-      
+      let availableSpot = `[${row}][${col}]`;
 
       if (spot === "X") {
         theMove.innerHTML = "X";
       } else if (spot === "O") {
         theMove.innerHTML = "O";
       } else {
-        available.push(availableSpot)
+        available.push(availableSpot);
       }
 
-      tile.appendChild(theMove)
+      tile.appendChild(theMove);
       tile.className = "tile";
-      tile.classList.add(rowLet[row] + col)
+      tile.classList.add(rowLet[row] + col);
 
       myBoard.appendChild(tile);
 
@@ -74,7 +76,7 @@ function drawBattle(currBoard) {
         if (isGameover !== true) {
           if (available.includes(availableSpot)) {
             currBoard[row][col] = currPlayer;
-            saveMove()
+            saveMove();
           }
         }
       }
@@ -82,16 +84,15 @@ function drawBattle(currBoard) {
   }
 }
 
-drawBattle(board)
+drawBattle(board);
 
 function checkWinner(a,b,c) {
   return (a === b && b === c && a !== "")
 }
 
-const divMain = document.getElementById("main");
+let winningTrio = [];
 
 function theWinner() {
-
   let winner = null;
 
   //Horizontal
@@ -121,8 +122,10 @@ function theWinner() {
     winningTrio = [`a2`,`b1`,`c0`]
   }
 
-  return (winner === "O" ? "You win!" : winner === "X" ? "You lose!" : null);
+  return (winner === players[0] ? "You win!" : winner === players[1] ? "You lose!" : null);
 }
+
+let history = [];
 
 function saveHistory() {
   let historyBoard = [
@@ -140,31 +143,86 @@ function saveHistory() {
   history.push(historyBoard)
 }
 
-const topCurtain = document.getElementById("top-curtain");
-const botCurtain = document.getElementById("bot-curtain");
-const curtain = document.getElementById("curtain");
+const player1 = document.getElementById("player1");
+const player2 = document.getElementById("player2");
+let versusSet = "1 Player";
 
-function entrance() {
-  setTimeout(() => {
-    topCurtain.classList.add("open-top")
-    botCurtain.classList.add("open-bot")
-
+async function aiTurn() {
+  let aiMove = new Promise((resolve, reject) => {
     setTimeout(() => {
-      curtain.style.display = "none"
-    }, 1000)
-  }, 3000)  
+
+      let arrIndexes = available[Math.floor(Math.random() * available.length)];
+
+      resolve(`board${arrIndexes} = "${currPlayer}"`)
+    }, 250)
+  });
+  
+  let result = await aiMove;
+
+  eval(result);
+  saveMove();
 }
 
-entrance()
+function nextPlayer() {
+  currPlayer = currPlayer === players[0] ? players[1] : players[0];
+  player1.className = currPlayer === players[0] ? "current-player" : "";
+  player2.className = currPlayer === players[1] ? "current-player" : "";
+
+  if (versusSet === "1 Player") {
+    if (currPlayer === players[1]) {
+      aiTurn();
+    }
+  }
+}
+
+let historyIndex = 0;
+const playerShell = document.getElementById("players");
+const gameOverShell = document.getElementById("game-over");
+
+function gameOver() {
+  isGameover = true;
+  player1.className = "";
+  player2.className = "";
+  historyIndex = history.length - 1; 
+
+  playerShell.style.display = "none"
+  gameOverShell.style.display = "block"
+}
+
+function displayWinner() {
+  for (let i = 0; i < winningTrio.length; i++) {
+    const tile = document.querySelector(`.${winningTrio[i]}`);
+    
+    tile.classList.add("winning-trio");
+  }
+}
+
+const winnerName = document.getElementById("the-winner");
+const p1Name = document.getElementById("p1-name");
+const p2Name = document.getElementById("p2-name");
+
+function saveMove() {
+  let result = theWinner();
+  drawBattle(board);
+  saveHistory();
+
+  if (result === null) {
+    if (available.length > 0) {
+      nextPlayer()
+    } else {
+      winnerName.innerHTML = "It's a Tie!";
+      gameOver()
+    }
+  } else {
+    winnerName.innerHTML = currPlayer === players[0] ? `${p1Name.innerHTML} Wins!` : `${p2Name.innerHTML} Wins!`;
+    displayWinner()
+    gameOver()
+  }
+}
 
 const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 const btnReset = document.getElementById("btn-reset");
-const btnVersus = document.getElementById("versus");
-const player1Elem = document.getElementById("player1");
-const player2Elem = document.getElementById("player2");
-
-let historyIndex = 0;
 
 function disableBtn() {
   if (historyIndex === 0) {
@@ -195,43 +253,6 @@ btnNext.addEventListener("click", function (event) {
   disableBtn()
 });
 
-function changeCharacters() {
-  const p1Char = document.getElementById("p1-char");
-  const p2Char = document.getElementById("p2-char");
-
-  players = players[0] === "X" ? ["O","X"] : ["X","O"];
-  p1Char.innerHTML = p1Char.innerHTML === "X" ? "O" : "X";
-  p2Char.innerHTML = p2Char.innerHTML === "X" ? "O" : "X";
-  resetGame()
-}
-
-player1Elem.addEventListener("click", function (event) {
-  changeCharacters()
-});
-
-player2Elem.addEventListener("click", function (event) {
-  changeCharacters()
-});
-
-btnVersus.addEventListener("click", function (event) {
-  const vsAIDisplay = document.getElementById("vs-ai");
-  const vs2pDisplay = document.getElementById("vs-2p");
-
-  if (versusSet === "1 Player") {
-    vsAIDisplay.style.display = "none"
-    vs2pDisplay.style.display = "block"
-    p2Name.innerHTML = "Player2"
-    versusSet = "2 Player"
-  } else {
-    vsAIDisplay.style.display = "block"
-    vs2pDisplay.style.display = "none"
-    p2Name.innerHTML = "Computer"
-    versusSet = "1 Player"
-  }
-
-  resetGame()
-});
-
 function resetGame() {
   board = [
     ["","",""],
@@ -256,77 +277,44 @@ btnReset.addEventListener("click", function (event) {
   resetGame()
 });
 
-async function aiTurn() {
-  let aiMove = new Promise((resolve, reject) => {
-    setTimeout(() => {
+const player1Elem = document.getElementById("player1");
+const player2Elem = document.getElementById("player2");
 
-      let arrIndexes = available[Math.floor(Math.random() * available.length)];
+function changeCharacters() {
+  const p1Char = document.getElementById("p1-char");
+  const p2Char = document.getElementById("p2-char");
 
-      resolve(`board${arrIndexes} = "${currPlayer}"`)
-    }, 250)
-  });
-  
-  let result = await aiMove;
-
-  eval(result);
-  saveMove();
+  players = players[0] === "X" ? ["O","X"] : ["X","O"];
+  p1Char.innerHTML = p1Char.innerHTML === "X" ? "O" : "X";
+  p2Char.innerHTML = p2Char.innerHTML === "X" ? "O" : "X";
+  resetGame()
 }
 
-const player1 = document.getElementById("player1");
-const player2 = document.getElementById("player2");
-const p1Name = document.getElementById("p1-name");
-const p2Name = document.getElementById("p2-name");
+player1Elem.addEventListener("click", function (event) {
+  changeCharacters()
+});
 
-function nextPlayer() {
-  currPlayer = currPlayer === players[0] ? players[1] : players[0];
-  player1.className = currPlayer === players[0] ? "current-player" : "";
-  player2.className = currPlayer === players[1] ? "current-player" : "";
+player2Elem.addEventListener("click", function (event) {
+  changeCharacters()
+});
+
+const btnVersus = document.getElementById("versus");
+
+btnVersus.addEventListener("click", function (event) {
+  const vsAIDisplay = document.getElementById("vs-ai");
+  const vs2pDisplay = document.getElementById("vs-2p");
 
   if (versusSet === "1 Player") {
-    if (currPlayer === players[1]) {
-      aiTurn();
-    }
-  }
-}
-
-const playerShell = document.getElementById("players");
-const gameOverShell = document.getElementById("game-over");
-const winnerName = document.getElementById("the-winner");
-
-function displayWinner() {
-  for (let i = 0; i < winningTrio.length; i++) {
-    const tile = document.querySelector(`.${winningTrio[i]}`);
-    
-    tile.classList.add("winning-trio");
-  }
-}
-
-function gameOver() {
-  isGameover = true;
-  player1.className = "";
-  player2.className = "";
-  historyIndex = history.length - 1; 
-
-  playerShell.style.display = "none"
-  gameOverShell.style.display = "block"
-}
-
-function saveMove(row,col) {
-  let result = theWinner();
-  drawBattle(board);
-  saveHistory();
-  
-  if (result !== null) {
-    winnerName.innerHTML = currPlayer === players[0] ? `${p1Name.innerHTML} Wins!` : `${p2Name.innerHTML} Wins!`;
-    displayWinner()
-    gameOver()
+    vsAIDisplay.style.display = "none"
+    vs2pDisplay.style.display = "block"
+    p2Name.innerHTML = "Player2"
+    versusSet = "2 Player"
   } else {
-    if (available.length > 0) {
-      nextPlayer()
-    } else {
-      winnerName.innerHTML = "It's a Tie!";
-      gameOver()
-    }
+    vsAIDisplay.style.display = "block"
+    vs2pDisplay.style.display = "none"
+    p2Name.innerHTML = "Computer"
+    versusSet = "1 Player"
   }
-}
 
+  resetGame()
+});
