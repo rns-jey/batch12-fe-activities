@@ -142,12 +142,17 @@ function saveHistory() {
 
 const topCurtain = document.getElementById("top-curtain");
 const botCurtain = document.getElementById("bot-curtain");
+const curtain = document.getElementById("curtain");
 
 function entrance() {
   setTimeout(() => {
     topCurtain.classList.add("open-top")
     botCurtain.classList.add("open-bot")
-  }, 3000)
+
+    setTimeout(() => {
+      curtain.style.display = "none"
+    }, 1000)
+  }, 3000)  
 }
 
 entrance()
