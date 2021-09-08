@@ -66,8 +66,8 @@ function drawBattle(currBoard) {
 
       myBoard.appendChild(tile);
 
-      if (isGameover !== true) {
-        tile.onclick = function () {
+      tile.onclick = function () {
+        if (isGameover !== true) {
           if (available.includes(availableSpot)) {
             currBoard[row][col] = currPlayer;
             saveMove()
