@@ -17,6 +17,18 @@ body {
   flex-direction: column;
 }
 
+#versus {
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#versus img {
+  width: 100%;
+}
+
 #player1,
 #player2 {
   display: flex;
@@ -27,12 +39,16 @@ body {
   height: 100px;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
   margin: 10px;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 #players h1,
 #players h2 {
   margin: 0;
+}
+
+#vs2p {
+  display: none;
 }
 
 .current-player {
