@@ -240,6 +240,20 @@ body {
 
 #game-over {
   display: none;
+  width: 100%;
+}
+
+#game-over-shell {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+#winner-shell {
+  width: 70%;
+  border: 5px solid white;
+  border-radius: 5%;
 }
 
 #the-winner {
@@ -248,11 +262,48 @@ body {
 
 .history-buttons {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border: 5px solid white;
+  border-radius: 5%;
+  width: 25%;
 }
 
-.history-buttons span {
+.button {
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 2rem;
+  width: 100%;
+  transition: all 0.5s;
+  cursor: not-allowed;
+  padding-left: 5px;
+}
+
+.button.-enabled span {
   cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button.-enabled span:before {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -10px;
+  transition: 0.5s;
+}
+
+.button.-enabled:hover span {
+  padding-left: 15px;
+}
+
+.button.-enabled:hover span:before {
+  opacity: 1;
+  left: 0;
 }
 
 .winning-trio span {

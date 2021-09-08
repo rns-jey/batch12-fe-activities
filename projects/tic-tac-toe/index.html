@@ -23,7 +23,7 @@
           <div id="players-shell">
             <div class="current-player" id="player1">
               <h2 id="p1-name">Player1</h2>
-              <h1 id="p1-char">X</h1>
+              <h1 id="p1-char">🅧</h1>
             </div>
             <div id="versus">
               <img
@@ -39,16 +39,26 @@
             </div>
             <div class="" id="player2">
               <h2 id="p2-name">Computer</h2>
-              <h1 id="p2-char">O</h1>
+              <h1 id="p2-char">🅞</h1>
             </div>
           </div>
         </div>
         <div id="game-over">
-          <h1 id="the-winner">Player1 Wins!</h1>
-          <div class="history-buttons">
-            <button id="btn-prev">|<<</button>
-            <button id="btn-reset">Reset</button>
-            <button id="btn-next" disabled>>>|</button>
+          <div id="game-over-shell">
+            <div id="winner-shell">
+              <h1 id="the-winner">Player1 Wins!</h1>
+            </div>
+            <div class="history-buttons">
+              <button class="button -enabled" id="btn-prev">
+                <span>Previous</span>
+              </button>
+              <button class="button" id="btn-next">
+                <span>Next</span>
+              </button>
+              <button class="button -enabled" id="btn-reset">
+                <span>Rematch</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

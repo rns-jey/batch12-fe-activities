@@ -59,9 +59,9 @@ function drawBattle(currBoard) {
       let availableSpot = `[${row}][${col}]`;
 
       if (spot === "X") {
-        theMove.innerHTML = "X";
+        theMove.innerHTML = "🅧";
       } else if (spot === "O") {
-        theMove.innerHTML = "O";
+        theMove.innerHTML = "🅞";
       } else {
         available.push(availableSpot);
       }
@@ -226,31 +226,34 @@ const btnReset = document.getElementById("btn-reset");
 
 function disableBtn() {
   if (historyIndex === 0) {
-    btnPrev.disabled = true;
+    btnPrev.className = "button";
   } else if (historyIndex > 0) {
-    btnPrev.disabled = false;
+    btnPrev.classList.add("-enabled");
   }
 
   if (historyIndex === (history.length - 1)) {
-    btnNext.disabled = true;
+    btnNext.className = "button";
     displayWinner()
   } else if (historyIndex < (history.length - 1)) {
-    btnNext.disabled = false;
+    btnNext.classList.add("-enabled");
   }
 }
 
 btnPrev.addEventListener("click", function (event) {
-  historyIndex -= 1;
-  drawBattle(history[historyIndex]);
-
-  disableBtn()
+  if (historyIndex > 0) {
+    historyIndex -= 1;
+    drawBattle(history[historyIndex]);
+    disableBtn()
+  }
 });
 
 btnNext.addEventListener("click", function (event) {
-  historyIndex += 1;
-  drawBattle(history[historyIndex]);
+  if (historyIndex < (history.length - 1)) {
+    historyIndex += 1;
+    drawBattle(history[historyIndex]);
 
-  disableBtn()
+    disableBtn()
+  }
 });
 
 function resetGame() {
@@ -285,8 +288,8 @@ function changeCharacters() {
   const p2Char = document.getElementById("p2-char");
 
   players = players[0] === "X" ? ["O","X"] : ["X","O"];
-  p1Char.innerHTML = p1Char.innerHTML === "X" ? "O" : "X";
-  p2Char.innerHTML = p2Char.innerHTML === "X" ? "O" : "X";
+  p1Char.innerHTML = p1Char.innerHTML === "🅧" ? "🅞" : "🅧";
+  p2Char.innerHTML = p2Char.innerHTML === "🅧" ? "🅞" : "🅧";
   resetGame()
 }
 
